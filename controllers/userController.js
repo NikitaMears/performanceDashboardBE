@@ -297,24 +297,24 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    const changePasswordRequired =
-      user.status === "Candidate" ||
-      shouldChangePassword(user.lastPasswordChange);
+    // const changePasswordRequired =
+    //   user.status === "Candidate" ||
+    //   shouldChangePassword(user.lastPasswordChange);
 
-    if (changePasswordRequired) {
-      const token = jwt.sign(
-        { id: user.id, changePasswordRequired: true },
-        config.jwtSecret,
-        { expiresIn: "1h" }
-      );
+    // if (!changePasswordRequired) {
+    //   const token = jwt.sign(
+    //     { id: user.id, changePasswordRequired: true },
+    //     config.jwtSecret,
+    //     { expiresIn: "1h" }
+    //   );
 
-      return res
-        .status(200)
-        .json({ message: "Password change required", token });
-    }
+    //   return res
+    //     .status(200)
+    //     .json({ message: "Password change required", token });
+    // }
 
     const token = jwt.sign({ id: user.id }, config.jwtSecret, {
-      expiresIn: "1hr",
+      expiresIn: "365d",
     });
 
     res.status(200).json({ user, token });

@@ -4,6 +4,12 @@ const User = require('./models/User');
 const Role = require('./models/Role');
 const Permission = require('./models/Permission');
 const RolePermission = require('./models/RolePermission');
+const Project = require('./models/Project');
+const Finance = require('./models/Finance');
+const BDU = require('./models/BDU');
+
+
+
 
 const cors = require('cors');
 const routes = require('./routes/routes');
